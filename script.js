@@ -46,6 +46,10 @@ let deletion = 0;
 
 buttons.numbers.forEach((number)=> {
     number.addEventListener("click", ()=>{
+        if (deletion == 1){
+            display.input.innerText = "";
+            deletion = 0;
+        }
         display.input.innerText += number.innerText;
         if (calculation.num2 == 0){
             calculation.num1 = parseInt(display.input.innerText);
