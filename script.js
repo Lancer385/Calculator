@@ -9,7 +9,7 @@ function multiply(num1, num2){
 }
 function divide(num1, num2){
     if (num2 == 0) {
-        return ("THE HELL ARE YOU DOING");
+        return ("I'm not sure you are supposed to do that, my dear");
     }
     return num1 / num2;
 }
