@@ -23,6 +23,8 @@ function operate(num1, operator, num2){
             return multiply(num1, num2);
         case "/":
             return divide(num1, num2);
+        case "":
+            return num1;
     }
 }
 
@@ -32,6 +34,9 @@ let calculation = {
     operator: "",
     num2 : 0,
 };
+
+let deletion = 0;
+
 const buttons = {
     backSpace : document.querySelector("#backSpace"),
     equal : document.querySelector("#equal"),
@@ -41,7 +46,7 @@ const buttons = {
 const display = {
     input : document.querySelector("#input"),
 };
-let deletion = 0;
+
 
 
 buttons.numbers.forEach((number)=> {
@@ -79,11 +84,17 @@ buttons.operators.forEach((operator) =>{
                 calculation.operator = "-";
                 break;
         }
-        calculation.num2 = 1;
+        calculation.num2 = calculation.num1;
         deletion = 1;
     });
 });
 
 buttons.equal.addEventListener("click", () =>{
-    display.input.innerText = operate(calculation.num1, calculation.operator, calculation.num2);
+    let result =  operate(calculation.num1, calculation.operator, calculation.num2);
+    console.log("num1:" ,calculation.num1);
+    console.log("num2:", calculation.num2);
+    console.log(result);
+    display.input.innerText = result;
+    calculation.num1 = parseInt(display.input.innerText);
+    deletion = 1;
 })
