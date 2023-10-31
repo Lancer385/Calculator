@@ -55,12 +55,15 @@ buttons.numbers.forEach((number)=> {
             display.input.innerText = "";
             deletion = 0;
         }
+        let limit = display.input.innerText.length;
+        if (limit < 10){
         display.input.innerText += number.innerText;
-        if (calculation.num2 == 0){
-            calculation.num1 = parseInt(display.input.innerText);
-        }
-        else {
-            calculation.num2 = parseInt(display.input.innerText);
+            if (calculation.num2 == 0){
+                calculation.num1 = parseInt(display.input.innerText);
+            }
+            else {
+                calculation.num2 = parseInt(display.input.innerText);
+            }
         }
         console.log("num1:" ,calculation.num1);
         console.log("num2:", calculation.num2);
