@@ -43,7 +43,8 @@ const buttons = {
     equal : document.querySelector("#equal"),
     numbers : document.querySelectorAll(".numbers"),
     operators : document.querySelectorAll(".operator"),
-    clear : document.querySelector("#C")
+    clear : document.querySelector("#C"),
+    decimal : document.querySelector("#decimal")
 };
 
 const display = {
@@ -62,18 +63,37 @@ buttons.numbers.forEach((number)=> {
         if (limit < 10){
         display.input.innerText += number.innerText;
             if (calculation.num2 == 0){
-                calculation.num1 = parseInt(display.input.innerText);
+                calculation.num1 = parseFloat(display.input.innerText);
             }
             else {
-                calculation.num2 = parseInt(display.input.innerText);
+                calculation.num2 = parseFloat(display.input.innerText);
             }
         }
         switches.stop = 1;
         console.log("num1:" ,calculation.num1);
         console.log("num2:", calculation.num2);
-    })
+    });
 });
 
+
+buttons.decimal.addEventListener("click", () =>{
+    if (display.input.innerText.includes(".") === false){
+        if (switches.reset == 1){
+            display.input.innerText = "";
+            switches.reset = 0;
+        }
+        let limit = display.input.innerText.length;
+        if (limit < 10){
+        display.input.innerText += buttons.decimal.innerText;
+            if (calculation.num2 == 0){
+                calculation.num1 = parseFloat(display.input.innerText);
+            }
+            else {
+                calculation.num2 = parseFloat(display.input.innerText);
+            }
+        }
+    }
+});
 
 buttons.operators.forEach((operator) =>{
     operator.addEventListener("click", () =>{
