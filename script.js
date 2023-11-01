@@ -42,7 +42,8 @@ const buttons = {
     backSpace : document.querySelector("#backSpace"),
     equal : document.querySelector("#equal"),
     numbers : document.querySelectorAll(".numbers"),
-    operators : document.querySelectorAll(".operator")
+    operators : document.querySelectorAll(".operator"),
+    clear : document.querySelector("#C")
 };
 
 const display = {
@@ -71,7 +72,7 @@ buttons.numbers.forEach((number)=> {
         console.log("num1:" ,calculation.num1);
         console.log("num2:", calculation.num2);
     })
-})
+});
 
 
 buttons.operators.forEach((operator) =>{
@@ -124,7 +125,7 @@ buttons.equal.addEventListener("click", () =>{
     switches.reset = 1;
     calculation.operator = "";
     console.log("result:", calculation.result);
-})
+});
 
 
 buttons.backSpace.addEventListener("click", () =>{
@@ -136,4 +137,11 @@ buttons.backSpace.addEventListener("click", () =>{
         calculation.num2 = parseInt(display.input.innerText);
     }
     switches.stop = 1;
-})
+});
+
+buttons.clear.addEventListener("click", () => {
+    display.input.innerText = '';
+    calculation.num1 = 0;
+    calculation.num2 = 0;
+    calculation.operator = '';
+});
