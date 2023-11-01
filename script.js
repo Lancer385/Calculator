@@ -34,8 +34,8 @@ let calculation = {
 };
 
 let switches = {
-    deletion : 0,
-    stop : 0
+    reset : 0, // resets numbers input upon pressing either an operator button or equal button.
+    stop : 0 // stops continuous calculation using equal button.
 }
 
 const buttons = {
@@ -44,6 +44,7 @@ const buttons = {
     numbers : document.querySelectorAll(".numbers"),
     operators : document.querySelectorAll(".operator")
 };
+
 const display = {
     input : document.querySelector("#input"),
 };
@@ -52,9 +53,9 @@ const display = {
 
 buttons.numbers.forEach((number)=> {
     number.addEventListener("click", ()=>{
-        if (switches.deletion == 1){
+        if (switches.reset == 1){
             display.input.innerText = "";
-            switches.deletion = 0;
+            switches.reset = 0;
         }
         let limit = display.input.innerText.length;
         if (limit < 10){
@@ -90,8 +91,11 @@ buttons.operators.forEach((operator) =>{
                 break;
         }
         calculation.num2 = calculation.num1;
-        switches.deletion = 1;
+        switches.reset = 1;
         switches.stop = 1;
+        console.log("num1:" ,calculation.num1);
+        console.log("num2:", calculation.num2);
+        console.log("result:", calculation.result);
     });
 });
 
@@ -107,9 +111,24 @@ buttons.equal.addEventListener("click", () =>{
         calculation.num1 = parseFloat(display.input.innerText);
         switches.stop = 0;
     }
-    switches.deletion = 1;
+    switches.reset = 1;
     
     console.log("num1:" ,calculation.num1);
     console.log("num2:", calculation.num2);
     console.log("result:", calculation.result);
+})
+
+
+buttons.backSpace.addEventListener("click", () =>{
+    display.input.innerText = display.input.innerText.slice(0, -1);
+    if (calculation.num2 == 0){
+        calculation.num1 = parseInt(display.input.innerText);
+    }
+    else {
+        calculation.num2 = parseInt(display.input.innerText);
+    }
+    switches.stop = 1;
+    console.log("num1:" ,calculation.num1);
+    console.log("num2:", calculation.num2);
+
 })
