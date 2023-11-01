@@ -98,7 +98,7 @@ buttons.decimal.addEventListener("click", () =>{
 buttons.operators.forEach((operator) =>{
     operator.addEventListener("click", () =>{
         if (operator !== ""){
-            calculation.result =  operate(calculation.num1, calculation.operator, calculation.num2);
+            calculation.result =  Math.round(operate(calculation.num1, calculation.operator, calculation.num2)*1000) / 1000;
             if (calculation.result === Infinity){
                 display.input.innerText = "don't mess with me";
                 calculation.num1 = 0;
@@ -131,7 +131,7 @@ buttons.operators.forEach((operator) =>{
 
 buttons.equal.addEventListener("click", () =>{
     if(switches.stop == 1) {
-        calculation.result =  operate(calculation.num1, calculation.operator, calculation.num2);
+        calculation.result =  Math.round(operate(calculation.num1, calculation.operator, calculation.num2) * 1000) /1000;
         if (calculation.result === Infinity){
             display.input.innerText = "don't mess with me";
             calculation.num1 = 0;
@@ -151,10 +151,10 @@ buttons.equal.addEventListener("click", () =>{
 buttons.backSpace.addEventListener("click", () =>{
     display.input.innerText = display.input.innerText.slice(0, -1);
     if (calculation.num2 == 0){
-        calculation.num1 = parseInt(display.input.innerText);
+        calculation.num1 = parseFloat(display.input.innerText);
     }
     else {
-        calculation.num2 = parseInt(display.input.innerText);
+        calculation.num2 = parseFloat(display.input.innerText);
     }
     switches.stop = 1;
 });
