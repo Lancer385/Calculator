@@ -75,10 +75,11 @@ button {
     text-shadow: 2px 2px #330040;
     background:none;
 }
-#backSpace {
-    color: salmon;
+#AC {
     width: 165px;
+    color: salmon;
 }
+
 #plus {
     color: #a37cf0;
 }
@@ -94,12 +95,12 @@ button {
 #equal {
     color: #362c5f;
 }
-button:hover , #plus:hover , #divide:hover, #minus:hover, #multiply:hover, #backSpace:hover,#equal:hover {
+button:hover , #plus:hover , #divide:hover, #minus:hover, #multiply:hover, #AC:hover,#equal:hover {
     background-color: #c900ff;
     color: #330040;
     text-shadow: none;
 }
-button:active, #plus:active , #divide:active, #minus:active, #multiply:active, #backSpace:active,#equal:active{
+button:active, #plus:active , #divide:active, #minus:active, #multiply:active, #AC:active,#equal:active{
     background-color: #330040;
     color: #c900ff;
 }
