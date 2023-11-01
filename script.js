@@ -43,6 +43,7 @@ const buttons = {
     equal : document.querySelector("#equal"),
     numbers : document.querySelectorAll(".numbers"),
     operators : document.querySelectorAll(".operator"),
+    allClear : document.querySelector("#AC"),
     clear : document.querySelector("#C"),
     decimal : document.querySelector("#decimal")
 };
@@ -159,9 +160,13 @@ buttons.backSpace.addEventListener("click", () =>{
     switches.stop = 1;
 });
 
-buttons.clear.addEventListener("click", () => {
+buttons.allClear.addEventListener("click", () => {
     display.input.innerText = '';
     calculation.num1 = 0;
     calculation.num2 = 0;
     calculation.operator = '';
 });
+
+buttons.clear.addEventListener("click", () => {
+    display.input.innerText = '';
+})
