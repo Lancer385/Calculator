@@ -21,7 +21,7 @@ function operate(num1, operator, num2){
         case "/":
             return divide(num1, num2);
         case "":
-            return num1;
+            return num1; // num1 will always store the result after calculation. just putting it so nothing breaks.
     }
 }
 
@@ -76,6 +76,17 @@ buttons.numbers.forEach((number)=> {
 
 buttons.operators.forEach((operator) =>{
     operator.addEventListener("click", () =>{
+        if (operator !== ""){
+            calculation.result =  operate(calculation.num1, calculation.operator, calculation.num2);
+            if (calculation.result === Infinity){
+                display.input.innerText = "don't mess with me";
+                calculation.num1 = 0;
+            }
+            else{
+                display.input.innerText = calculation.result;
+                calculation.num1 = parseFloat(display.input.innerText);
+            }
+        }
         switch (operator.innerText){
             case 'x':
                 calculation.operator = "x";
@@ -93,9 +104,7 @@ buttons.operators.forEach((operator) =>{
         calculation.num2 = calculation.num1;
         switches.reset = 1;
         switches.stop = 1;
-        console.log("num1:" ,calculation.num1);
-        console.log("num2:", calculation.num2);
-        console.log("result:", calculation.result);
+        console.log ("operator:", calculation.operator);
     });
 });
 
@@ -104,17 +113,16 @@ buttons.equal.addEventListener("click", () =>{
         calculation.result =  operate(calculation.num1, calculation.operator, calculation.num2);
         if (calculation.result === Infinity){
             display.input.innerText = "don't mess with me";
+            calculation.num1 = 0;
         }
         else{
             display.input.innerText = calculation.result;
+            calculation.num1 = parseFloat(display.input.innerText);
         }
-        calculation.num1 = parseFloat(display.input.innerText);
         switches.stop = 0;
     }
     switches.reset = 1;
-    
-    console.log("num1:" ,calculation.num1);
-    console.log("num2:", calculation.num2);
+    calculation.operator = "";
     console.log("result:", calculation.result);
 })
 
@@ -128,7 +136,4 @@ buttons.backSpace.addEventListener("click", () =>{
         calculation.num2 = parseInt(display.input.innerText);
     }
     switches.stop = 1;
-    console.log("num1:" ,calculation.num1);
-    console.log("num2:", calculation.num2);
-
 })
