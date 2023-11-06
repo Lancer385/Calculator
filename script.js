@@ -66,13 +66,14 @@ buttons.numbers.forEach((number)=> {
             if (calculation.num2 == 0){
                 calculation.num1 = parseFloat(display.input.innerText);
             }
+            else if (calculation.operator == ""){
+                calculation.num1 = parseFloat(display.input.innerText);
+            }
             else {
                 calculation.num2 = parseFloat(display.input.innerText);
             }
         }
         switches.stop = 1;
-        console.log("num1:" ,calculation.num1);
-        console.log("num2:", calculation.num2);
     });
 });
 
@@ -87,6 +88,9 @@ buttons.decimal.addEventListener("click", () =>{
         if (limit < 10){
         display.input.innerText += buttons.decimal.innerText;
             if (calculation.num2 == 0){
+                calculation.num1 = parseFloat(display.input.innerText);
+            }
+            else if (calculation.operator == ""){
                 calculation.num1 = parseFloat(display.input.innerText);
             }
             else {
@@ -126,7 +130,6 @@ buttons.operators.forEach((operator) =>{
         calculation.num2 = calculation.num1;
         switches.reset = 1;
         switches.stop = 1;
-        console.log ("operator:", calculation.operator);
     });
 });
 
@@ -145,7 +148,6 @@ buttons.equal.addEventListener("click", () =>{
     }
     switches.reset = 1;
     calculation.operator = "";
-    console.log("result:", calculation.result);
 });
 
 
